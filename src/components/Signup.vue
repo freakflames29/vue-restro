@@ -2,16 +2,21 @@
     <div class="signup_box">
 
         <h1>Signup</h1>
+
+        <!-- <Inp_fieldds :name="name" :password="password"/> -->
+
         <input type="text" placeholder="username" v-model="name" />
         <input type="password" placeholder="password" v-model="password" />
-        <button @click="signup">Signup</button>
+        <button @click="signup">Signup</button><br><br>
+
+        <router-link to="/login" >[ already user? Login ]</router-link>
 
     </div>
 </template>
 <script>
 import axios from 'axios'
 import UniqueId from 'vue-unique-id';
-
+import Inp_fieldds from './Inp_fields.vue'
 export default {
     name: "Signup",
     data() {
@@ -20,24 +25,37 @@ export default {
             password: ''
         }
     },
+    components:{
+        Inp_fieldds
+    },
     methods: {
 
         // saving the data to json-server db via sending the data in POST request
         async signup() {
-            let result = await axios.post("http://localhost:3000/users", {
+
+            let sendData = {
                 "id": UniqueId.uid,
                 "name": this.name,
                 "password": this.password
-            })
+            }
+
+            let result = await axios.post("http://localhost:3000/users", sendData)
 
             console.log(result)
 
 
             if (result.status == 201) {
-                localStorage.setItem("user-info", JSON.stringify((result.data)))
-                this.$router.push({ name: 'Home' })
+                // localStorage.setItem("user-info", JSON.stringify((result.data)))
+                this.$router.push({ name: 'Login' })
 
             }
+        }
+    },
+      mounted() {
+        console.log("ghi");
+        if(localStorage.getItem("user-info"))
+        {
+            this.$router.push({name:'Home'})
         }
     }
 }
