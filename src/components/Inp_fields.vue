@@ -5,6 +5,7 @@
 </template>
 
 <script>
+   
 export default {
     name:'Inp_fields',
     props:{

@@ -1,13 +1,10 @@
 <template>
-	<h1>Home page</h1>
-
-	<router-link to='/signup'>Signup</router-link> | 
-	<router-link to='/login'>Login</router-link>
+	<h1>HI baby home page here</h1>
 </template>
 
-<script >
-
+<script>
 export default {
-	name: 'Home'
-}
+	name: "Home",	
+};
 </script>
+

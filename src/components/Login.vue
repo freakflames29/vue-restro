@@ -28,14 +28,16 @@ export default {
             if (req.status == 200 && req.data.length > 0) {
                 localStorage.setItem("user-info", JSON.stringify(req.data));
                 this.$router.push({ name: "Home" });
+            } else {
+                alert("wrong credentials bro !");
             }
         },
     },
     mounted() {
         console.log("ghi");
-        if(localStorage.getItem("user-info"))
-        {
-            this.$router.push({name:'Home'})
+        console.log(this.$lebu);
+        if (localStorage.getItem("user-info")) {
+            this.$router.push({ name: "Home" });
         }
     },
 };
